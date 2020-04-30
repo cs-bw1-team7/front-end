@@ -4,12 +4,18 @@ import Header from './Header';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const validate = ({ username, password }) => {
+const validate = ({ username, email, password }) => {
 	const errors = {};
 	if (!username) {
 		errors.username = 'Please create a username';
 	} else if (username.length < 2) {
 		errors.username = 'Your username must have two characters or more';
+	}
+
+	if (!email) {
+		errors.email = 'Please create a email';
+	} else if (email.length < 2) {
+		errors.email = 'Your email must have two characters or more';
 	}
 
 	if (!password) {
@@ -32,6 +38,7 @@ const CreateAccount = (props) => {
 				<Formik
 					initialValues={{
 						username : '',
+						email : '',
 						password : '',
 					}}
 					onSubmit={(values, tools) => {
@@ -39,7 +46,7 @@ const CreateAccount = (props) => {
 							.post('/auth/register', values)
 							.then((response) => {
 								localStorage.setItem('token', response.data.token);
-								props.history.push('/enter/login');
+								props.history.push('/api/login');
 								tools.resetForm();
 							})
 							.catch((error) => {
@@ -57,6 +64,12 @@ const CreateAccount = (props) => {
 								</div>
 
 								<div className='input-container'>
+									<label htmlFor='email'>Email</label>
+									<Field name='email' type='text' placeholder='Create email' />
+									<ErrorMessage name='email' component='div' className='error' />
+								</div>
+
+								<div className='input-container'>
 									<label htmlFor='password'>Password</label>
 									<Field name='password' type='password' placeholder='Create Password' />
 									<ErrorMessage name='password' component='div' className='error' />
@@ -70,7 +83,7 @@ const CreateAccount = (props) => {
 					}}
 				</Formik>
 
-				<Link to='/register'>
+				<Link to='/api/register'>
 					<p>Create an account here.</p>
 				</Link>
 			</section>

@@ -15,6 +15,7 @@ const Login = (props) => {
 				<Formik
 					initialValues={{
 						username : '',
+						email: '',
 						password : '',
 					}}
 					onSubmit={(values, tools) => {
@@ -42,6 +43,11 @@ const Login = (props) => {
 								</div>
 
 								<div className='input-container'>
+									<label htmlFor='email'>Email</label>
+									<Field name='email' type='text' placeholder='Enter email' />
+								</div>
+
+								<div className='input-container'>
 									<label htmlFor='password'>Password</label>
 									<Field name='password' type='password' placeholder='Enter Password' />
 									<p className='sign-in-error'>{error}</p>
@@ -55,7 +61,7 @@ const Login = (props) => {
 					}}
 				</Formik>
 
-				<Link to='/register'>
+				<Link to='api/register'>
 					<p>Create an Account</p>
 				</Link>
 			</section>

@@ -31,7 +31,7 @@ const Nav1 = () => {
           <Nav className="ml-auto" navbar color="light" light expand="md">
           <CardStyle><NavItem><Link className ="navstyle" to="/">Login</Link></NavItem></CardStyle>
           <div></div>
-          <CardStyle><Link to="/signup">SignUp</Link></CardStyle>
+          <CardStyle><Link to="/api/register">SignUp</Link></CardStyle>
           </Nav>
       </Navbar>
     </div>
