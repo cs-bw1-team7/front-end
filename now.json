@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "planner",
+    "builds": [{ "src": "planner/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
+    "routes": [
+        { "src": "/(.*)", "dest": "planner/$1" }
+    ]
+}
