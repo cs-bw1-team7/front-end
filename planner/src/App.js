@@ -20,9 +20,9 @@ function App() {
     
      <Switch>
       <Route exact path='/' component={Welcome}/>
-			<Route path='/register' component={Signup}/>
-      <Route path='/enter/login' component={Login}/>
-      <Route path='/create/register' component={CreateAccount}/>
+			<Route path='/api/register' component={Signup}/>
+      <Route path='/api/login' component={Login}/>
+      <Route path='/api/register' component={CreateAccount}/>
     <PrivateRoute>
       <PrivateRoute path='/dungeon' component={Dungeon}/>
     </PrivateRoute>
