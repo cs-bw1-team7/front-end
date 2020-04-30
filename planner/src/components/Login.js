@@ -16,11 +16,12 @@ const Login = (props) => {
 					initialValues={{
 						username : '',
 						email: '',
-						password : '',
+						password1 : '',
+						password2 : '',
 					}}
 					onSubmit={(values, tools) => {
 						axiosWithAuth()
-							.post('/auth/login', values)
+							.post('/api/login', values)
 							.then((response) => {
 								localStorage.setItem('token', response.data.token);
 								props.history.push('/dungeon');
@@ -48,8 +49,14 @@ const Login = (props) => {
 								</div>
 
 								<div className='input-container'>
-									<label htmlFor='password'>Password</label>
-									<Field name='password' type='password' placeholder='Enter Password' />
+									<label htmlFor='password1'>Password1</label>
+									<Field name='password1' type='password' placeholder='Enter Password1' />
+									<p className='sign-in-error'>{error}</p>
+								</div>
+
+								<div className='input-container'>
+									<label htmlFor='password2'>Password2</label>
+									<Field name='password2' type='password' placeholder='Enter Password2' />
 									<p className='sign-in-error'>{error}</p>
 								</div>
 
@@ -61,7 +68,7 @@ const Login = (props) => {
 					}}
 				</Formik>
 
-				<Link to='api/register'>
+				<Link to='/api/registration'>
 					<p>Create an Account</p>
 				</Link>
 			</section>

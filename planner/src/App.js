@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
-import Signup from './components/Signup';
+// import Signup from './components/Signup';
 import CreateAccount from './components/CreateAccount';
 import Dungeon from './components/Dungeon'
 
@@ -20,9 +20,9 @@ function App() {
     
      <Switch>
       <Route exact path='/' component={Welcome}/>
-			<Route path='/api/register' component={Signup}/>
+			{/* <Route path='/api/register' component={Signup}/> */}
       <Route path='/api/login' component={Login}/>
-      <Route path='/api/register' component={CreateAccount}/>
+      <Route path='/api/registration' component={CreateAccount}/>
     <PrivateRoute>
       <PrivateRoute path='/dungeon' component={Dungeon}/>
     </PrivateRoute>

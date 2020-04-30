@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Header from './Header';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const validate = ({ username, email, password }) => {
+const validate = ({ username, email, password1, password2 }) => {
 	const errors = {};
 	if (!username) {
 		errors.username = 'Please create a username';
@@ -18,12 +18,20 @@ const validate = ({ username, email, password }) => {
 		errors.email = 'Your email must have two characters or more';
 	}
 
-	if (!password) {
-		errors.password = 'Please create a password';
-	} else if (/\d/.test(password) === false) {
-		errors.password = 'Your password must contain a number';
-	} else if (password.length < 5) {
-		errors.password = 'Your password must have five characters or more';
+	if (!password1) {
+		errors.password1 = 'Please create a password1';
+	} else if (/\d/.test(password1) === false) {
+		errors.password1 = 'Your password1 must contain a number';
+	} else if (password1.length < 5) {
+		errors.password1 = 'Your password1 must have five characters or more';
+	}
+
+	if (!password2) {
+		errors.password2 = 'Please create a password2';
+	} else if (/\d/.test(password2) === false) {
+		errors.password2 = 'Your password2 must contain a number';
+	} else if (password2.length < 5) {
+		errors.password2 = 'Your password2 must have five characters or more';
 	}
 
 	return errors;
@@ -39,11 +47,12 @@ const CreateAccount = (props) => {
 					initialValues={{
 						username : '',
 						email : '',
-						password : '',
+						password1: '',
+						password2 : '',
 					}}
 					onSubmit={(values, tools) => {
 						axiosWithAuth()
-							.post('/auth/register', values)
+							.post('/api/registration', values)
 							.then((response) => {
 								localStorage.setItem('token', response.data.token);
 								props.history.push('/api/login');
@@ -70,9 +79,15 @@ const CreateAccount = (props) => {
 								</div>
 
 								<div className='input-container'>
-									<label htmlFor='password'>Password</label>
-									<Field name='password' type='password' placeholder='Create Password' />
-									<ErrorMessage name='password' component='div' className='error' />
+									<label htmlFor='password1'>Password1</label>
+									<Field name='password1' type='password' placeholder='Create password1' />
+									<ErrorMessage name='password1' component='div' className='error' />
+								</div>
+
+								<div className='input-container'>
+									<label htmlFor='password2'>Password2</label>
+									<Field name='password2' type='password' placeholder='Create password2' />
+									<ErrorMessage name='password2' component='div' className='error' />
 								</div>
 
 								<button className='planner-sign-in-button button-spacing' type='submit'>
@@ -83,9 +98,9 @@ const CreateAccount = (props) => {
 					}}
 				</Formik>
 
-				<Link to='/api/register'>
+				{/* <Link to='/api/register'>
 					<p>Create an account here.</p>
-				</Link>
+				</Link> */}
 			</section>
 		</div>
 	);
