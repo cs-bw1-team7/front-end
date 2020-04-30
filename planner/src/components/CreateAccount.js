@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -45,21 +45,21 @@ const CreateAccount = (props) => {
 				<h2>Create an Account</h2>
 				<Formik
 					initialValues={{
-						username : '',
-						email : '',
-						password1: '',
-						password2 : '',
+						"username": "",
+						"email": "",
+						"password1": "",
+						"password2": ""
 					}}
 					onSubmit={(values, tools) => {
 						axiosWithAuth()
-							.post('/api/registration', values)
+							.post('/api/registration/', values)
 							.then((response) => {
 								localStorage.setItem('token', response.data.token);
-								props.history.push('/api/login');
+								props.history.push('/api/login/');
 								tools.resetForm();
 							})
 							.catch((error) => {
-								console.log(error);
+								console.log(error.response);
 							});
 					}}
 					validate={validate}>
@@ -74,19 +74,19 @@ const CreateAccount = (props) => {
 
 								<div className='input-container'>
 									<label htmlFor='email'>Email</label>
-									<Field name='email' type='text' placeholder='Create email' />
+									<Field name='email' type='text' placeholder='Create Email' />
 									<ErrorMessage name='email' component='div' className='error' />
 								</div>
 
 								<div className='input-container'>
 									<label htmlFor='password1'>Password1</label>
-									<Field name='password1' type='password' placeholder='Create password1' />
+									<Field name='password1' type='password' placeholder='Create Password1' />
 									<ErrorMessage name='password1' component='div' className='error' />
 								</div>
 
 								<div className='input-container'>
 									<label htmlFor='password2'>Password2</label>
-									<Field name='password2' type='password' placeholder='Create password2' />
+									<Field name='password2' type='password' placeholder='Create Password2' />
 									<ErrorMessage name='password2' component='div' className='error' />
 								</div>
 
@@ -98,9 +98,9 @@ const CreateAccount = (props) => {
 					}}
 				</Formik>
 
-				{/* <Link to='/api/register'>
-					<p>Create an account here.</p>
-				</Link> */}
+				<Link to='/api/login'>
+					<p>Return to login here</p>
+				</Link>
 			</section>
 		</div>
 	);

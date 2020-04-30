@@ -14,10 +14,10 @@ const Login = (props) => {
 				<h2>Log In</h2>
 				<Formik
 					initialValues={{
-						username : '',
-						email: '',
-						password1 : '',
-						password2 : '',
+						"username": "",
+						"email": "",
+						"password1": "",
+						"password2": ""
 					}}
 					onSubmit={(values, tools) => {
 						axiosWithAuth()
