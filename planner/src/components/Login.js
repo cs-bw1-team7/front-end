@@ -55,7 +55,7 @@ const Login = (props) => {
 					}}
 				</Formik>
 
-				<Link to='/dungeon/register'>
+				<Link to='/register'>
 					<p>Create an Account</p>
 				</Link>
 			</section>
