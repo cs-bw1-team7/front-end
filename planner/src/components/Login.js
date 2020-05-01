@@ -16,19 +16,18 @@ const Login = (props) => {
 					initialValues={{
 						"username": "",
 						"email": "",
-						"password1": "",
-						"password2": ""
+						"password": ""
 					}}
 					onSubmit={(values, tools) => {
 						axiosWithAuth()
-							.post('/api/login', values)
+							.post('/api/login/', values)
 							.then((response) => {
 								localStorage.setItem('token', response.data.token);
-								props.history.push('/dungeon');
+								props.history.push('/api/adv/rooms/');
 								tools.resetForm();
 							})
 							.catch((error) => {
-								console.log(error);
+								console.log(error.response.data);
 								if (error) {
 									setError('Wrong information. Please try again.');
 								};
@@ -49,14 +48,8 @@ const Login = (props) => {
 								</div>
 
 								<div className='input-container'>
-									<label htmlFor='password1'>Password1</label>
-									<Field name='password1' type='password' placeholder='Enter Password1' />
-									<p className='sign-in-error'>{error}</p>
-								</div>
-
-								<div className='input-container'>
-									<label htmlFor='password2'>Password2</label>
-									<Field name='password2' type='password' placeholder='Enter Password2' />
+									<label htmlFor='password'>Password</label>
+									<Field name='password' type='password' placeholder='Enter Password' />
 									<p className='sign-in-error'>{error}</p>
 								</div>
 

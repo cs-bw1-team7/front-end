@@ -24,7 +24,7 @@ function App() {
       <Route path='/api/login' component={Login}/>
       <Route path='/api/registration' component={CreateAccount}/>
     <PrivateRoute>
-      <PrivateRoute path='/dungeon' component={Dungeon}/>
+      <PrivateRoute path='/api/adv/rooms/' component={Dungeon}/>
     </PrivateRoute>
     </Switch>
 

@@ -18,7 +18,7 @@ class Dungeon extends React.Component {
       }
     
     return <button className='planner-sign-in-button button-spacing' onClick={this.logoutBtn}>Logout</button>
-    
+      
       }
     }
 
